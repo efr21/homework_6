@@ -1,5 +1,4 @@
 from datetime import time
-from pprint import pprint
 
 
 def test_dark_theme_by_time():
@@ -8,8 +7,6 @@ def test_dark_theme_by_time():
     """
     current_time = time(hour=23)
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
-
-    is_dark_theme = None
 
     if 6 < current_time.hour <= 22:
         is_dark_theme = False
@@ -32,15 +29,15 @@ def test_dark_theme_by_time_and_user_choice():
     # TODO переключите темную тему в зависимости от времени суток,
     #  но учтите что темная тема может быть включена вручную
 
-    is_dark_theme = None
+    dark_theme_enabled_by_user = None
 
-    if 6 < current_time.hour <= 22:
-        if dark_theme_enabled_by_user:
-            is_dark_theme = True
-        else:
+    if dark_theme_enabled_by_user is None:
+        if 6 < current_time.hour <= 22:
             is_dark_theme = False
+        else:
+            is_dark_theme = True
     else:
-        is_dark_theme = True
+        is_dark_theme = dark_theme_enabled_by_user
 
     assert is_dark_theme is True
 
